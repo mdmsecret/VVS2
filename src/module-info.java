@@ -3,6 +3,7 @@ import java.io.*;
 
 module vvsMadalinMinea {
 	requires junit;
+	requires java.desktop;
 	
 	
 }

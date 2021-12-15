@@ -4,10 +4,11 @@ import java.net.*;
 import java.io.*;
 
 
-public class EchoMultiServer {
+public class EchoMultiServer extends JavaGUI {
     private ServerSocket serverSocket;
 
     public void start(int port) throws IOException {
+    	createGUI(null);
         serverSocket = new ServerSocket(port);
         while (true)
             new EchoClientHandler(serverSocket.accept()).start();

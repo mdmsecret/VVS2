@@ -5,7 +5,7 @@ import java.io.*;
 import java.io.IOException;
 
 
-public class EchoClient {
+public class EchoClient{
     private Socket clientSocket;
     private PrintWriter out;
     private BufferedReader in;
@@ -17,6 +17,7 @@ public class EchoClient {
     }
 
     public String sendMessage(String msg) throws IOException {
+    	
         out.println(msg);
         String resp = in.readLine();
         return resp;
