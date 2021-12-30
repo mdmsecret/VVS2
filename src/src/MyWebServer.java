@@ -13,7 +13,9 @@ import static java.lang.Integer.parseInt;
 
 public class MyWebServer extends Thread{
 
+    private static ServerSocket serverConnect;
     protected Socket clientSocket;
+
     
     static Scanner myObj = new Scanner(System.in);  // Create a Scanner object
 
@@ -21,11 +23,11 @@ public class MyWebServer extends Thread{
         ConfigManager configManager = new ConfigManager(new Configuration());
         int timer=1000000000;
         try {
-            ServerSocket serverConnect = new ServerSocket(configManager.getPort());
+            serverConnect = new ServerSocket(configManager.getPort());
             System.out.println("Server started.\nListening for connections on port : " + configManager.getPort());
 
             // we listen until user halts server execution
-            if(status==0)
+            if(status==1)
             while (true) {
                 WebServer myServer = new WebServer(serverConnect.accept(), configManager);
                 configManager.setState("running");
@@ -40,7 +42,7 @@ public class MyWebServer extends Thread{
 
 
             }
-            if(status==1)
+            if(status==3)
             while (true) {
                 WebServer myServer2 = new WebServer(serverConnect.accept(), configManager);
                 configManager.setState("stopped");
@@ -53,6 +55,7 @@ public class MyWebServer extends Thread{
                 Thread thread = new Thread(myServer2);
                 thread.start();
             }
+            if(status==2)
             while (true) {
                 WebServer myServer3 = new WebServer(serverConnect.accept(), configManager);
                 configManager.setState("maintenance");
@@ -69,6 +72,9 @@ public class MyWebServer extends Thread{
         } catch (IOException e) {
             System.err.println("Server Connection error : " + e.getMessage());
         }
+    }
+    public static void deactiv() throws IOException {
+        serverConnect.close();
     }
 
 }

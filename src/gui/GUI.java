@@ -1,6 +1,7 @@
 package gui;
 
 import src.MyWebServer;
+import src.MyWebServer2;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,7 @@ public class GUI {
 	public JButton startServerButton;
 	public JButton maintenanceServerButton;
 	public JButton stopServerButton;
-
+	public static int cnt=0;
 
 
 	public GUI() {
@@ -38,7 +39,12 @@ public class GUI {
 
 
 						try {
+							if (cnt>0)
+							{
+								MyWebServer.deactiv();
+							}
 							MyWebServer.activ(1);
+							cnt++;
 
 						} catch (IOException ioException) {
 							ioException.printStackTrace();
@@ -67,6 +73,7 @@ public class GUI {
 
 
 						try {
+							MyWebServer.deactiv();
 							MyWebServer.activ(2);
 
 						} catch (IOException ioException) {
@@ -95,6 +102,7 @@ public class GUI {
 
 
 						try {
+							MyWebServer.deactiv();
 							MyWebServer.activ(3);
 
 						} catch (IOException ioException) {
