@@ -8,7 +8,6 @@ import java.io.File;
 
 public class ConfigManager {
 	private Configuration config;
-
 	public ConfigManager(Configuration config) {
 		this.config = config;
 	}
